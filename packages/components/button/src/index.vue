@@ -66,7 +66,7 @@ const styleClass = computed(() => {
     transform: scale(1.1);
   }
   &__default {
-    background: $primary-color;
+    background: $default-color;
   }
   &__primary {
     background: $primary-color;
@@ -88,7 +88,7 @@ const styleClass = computed(() => {
   }
   // round
   &__round {
-    border-radius: 8px;
+    border-radius: 20px;
   }
 }
 </style>

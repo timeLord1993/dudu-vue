@@ -7,3 +7,25 @@ $warning-color: #f55d0c;
 $danger-color: #f70101;
 $black-color: #000000;
 $white-color: #ffffff;
+
+// 获取对应的颜色
+@function get-color($c) {
+  @if ($c == "default") {
+    @return $default-color;
+  }
+  @if ($c == "primary") {
+    @return $primary-color;
+  }
+  @if ($c == "info") {
+    @return $info-color;
+  }
+  @if ($c == "success") {
+    @return $success-color;
+  }
+  @if ($c == "danger") {
+    @return $danger-color;
+  }
+  @if ($c == "warning") {
+    @return $warning-color;
+  }
+}
