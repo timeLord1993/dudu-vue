@@ -1,12 +1,12 @@
 {
-  "name": "@du_design/du_vue",
+  "name": "@timelord1993/du_vue",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "author": "张叁疯",
-  "description": "Du Design - A Vue.js 3 UI library, @du_design/du-vue",
+  "description": "Du Design - A Vue.js 3 UI library, @timelord1993/du-vue",
   "keywords": [
-    "@du_design/du_vue"
+    "@timelord1993/du_vue"
   ],
   "homepage": "https://github.com/timeLord1993/dudu-vue",
   "repository": {
