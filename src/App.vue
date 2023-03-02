@@ -42,9 +42,33 @@ export default {
       </template>
     </du-table>
   </div>
+
+  <div>
+    <du-input
+      border-type="primary"
+      fontColor="#333333"
+      v-model="state.currentValue"
+    ></du-input>
+    <du-input border-type="success" borderWidth="6"></du-input>
+    <du-input border-type="info" fontSize="20"></du-input>
+    <du-input
+      border-type="danger"
+      fontSize="24"
+      borderWidth="4"
+      round
+    ></du-input>
+    <du-input border-type="warning">
+      <template #prepend>
+        <span>头</span>
+      </template>
+      <template #append>
+        <span>尾</span>
+      </template>
+    </du-input>
+  </div>
 </template>
 <script lang="ts" setup>
-import { reactive, ref } from "vue";
+import { reactive, ref, watch } from "vue";
 const state = reactive({
   theadData: [
     {
@@ -77,6 +101,14 @@ const state = reactive({
       title3: "xixi2",
     },
   ],
+  currentValue: "哈哈哈哈哈哈",
 });
+//  监听input值变化
+watch(
+  () => state.currentValue,
+  (val) => {
+    console.log("input 绑定的值", val);
+  }
+);
 </script>
 <style scoped></style>

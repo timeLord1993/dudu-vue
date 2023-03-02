@@ -83,7 +83,6 @@ const props = defineProps({
         "info",
         "warning",
         "danger",
-        "text",
       ].includes(value);
     },
   },

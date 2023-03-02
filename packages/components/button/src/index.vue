@@ -65,30 +65,17 @@ const styleClass = computed(() => {
   &:active {
     transform: scale(1.1);
   }
-  &__default {
-    background: $default-color;
-  }
-  &__primary {
-    background: $primary-color;
-  }
-  &__success {
-    background: $success-color;
-  }
-  &__danger {
-    background: $danger-color;
-  }
-  &__warning {
-    background: $warning-color;
-  }
-  &__info {
-    background: $info-color;
-  }
   // disabled
   &__disabled {
   }
   // round
   &__round {
     border-radius: 20px;
+  }
+}
+@each $t, $c in $theme-color {
+  .du-button__#{$t} {
+    background: $c;
   }
 }
 </style>

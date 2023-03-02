@@ -8,6 +8,16 @@ $danger-color: #f70101;
 $black-color: #000000;
 $white-color: #ffffff;
 
+// 主题色map
+$theme-color: (
+  default: $default-color,
+  primary: $primary-color,
+  success: $success-color,
+  info: $info-color,
+  warning: $warning-color,
+  danger: $danger-color,
+);
+
 // 获取对应的颜色
 @function get-color($c) {
   @if ($c == "default") {

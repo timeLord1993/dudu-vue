@@ -3,7 +3,8 @@
  */
 import DuButton from './components/button'
 import DuTable from './components/table'
+import DuInput from './components/input'
 
-export default [DuButton, DuTable]
+export default [DuButton, DuTable, DuInput]
 
-export { DuButton, DuTable }
+export { DuButton, DuTable, DuInput }
