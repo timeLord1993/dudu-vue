@@ -49,7 +49,12 @@ export default {
       fontColor="#333333"
       v-model="state.currentValue"
     ></du-input>
-    <du-input border-type="success" borderWidth="6"></du-input>
+    <du-input
+      border-type="success"
+      borderWidth="6"
+      vFocus
+      @enter="onEnter"
+    ></du-input>
     <du-input border-type="info" fontSize="20"></du-input>
     <du-input
       border-type="danger"
@@ -110,5 +115,9 @@ watch(
     console.log("input 绑定的值", val);
   }
 );
+
+function onEnter(val: string) {
+  console.log("val", val);
+}
 </script>
 <style scoped></style>

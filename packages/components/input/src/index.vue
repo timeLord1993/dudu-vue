@@ -16,12 +16,14 @@
         fontSize: normalizeFontSize,
       }"
       v-model="value"
+      v-focus
+      @keyup.enter="onEnter"
     />
     <slot name="append"></slot>
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import { isString, isNumber } from "../../../utils";
 
 export default defineComponent({
@@ -79,9 +81,15 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  vFocus: {
+    type: Boolean,
+    default: false,
+  },
 });
 
-const emit = defineEmits(["update:modelValue"]);
+const emits = defineEmits(["update:modelValue", "enter"]);
+
+const eventBindingVal = ref("");
 
 // v-model
 const value = computed({
@@ -89,9 +97,20 @@ const value = computed({
     return props.modelValue;
   },
   set(value) {
-    emit("update:modelValue", value);
+    eventBindingVal.value = value;
+    emits("update:modelValue", value);
   },
 });
+
+// v-focus
+const vFocus = props.vFocus && {
+  mounted: (el) => el.focus(),
+};
+
+// on-enter
+function onEnter() {
+  emits("enter", eventBindingVal.value);
+}
 
 // 正常化单位
 const normalizeBorderWidth = computed(() => {
