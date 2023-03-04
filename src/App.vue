@@ -13,8 +13,8 @@ export default {
     <du-button type="info">按钮</du-button>
     <du-button type="danger">按钮</du-button>
   </div>
-  <div :style="{ marginTop: '10px' }">
-    <du-button round>按钮</du-button>
+  <div :style="{ marginTop: '20px' }">
+    <du-button round @click="onDialog">按钮</du-button>
     <du-button type="primary" round>按钮</du-button>
     <du-button type="success" round>按钮</du-button>
     <du-button type="warning" round>按钮</du-button>
@@ -22,7 +22,7 @@ export default {
     <du-button type="danger" round>按钮</du-button>
   </div>
 
-  <div>
+  <div :style="{ marginTop: '20px' }">
     <du-table
       :head="state.theadData"
       :data="state.tableData"
@@ -43,7 +43,7 @@ export default {
     </du-table>
   </div>
 
-  <div>
+  <div :style="{ marginTop: '20px' }">
     <du-input
       border-type="primary"
       fontColor="#333333"
@@ -70,6 +70,17 @@ export default {
         <span>尾</span>
       </template>
     </du-input>
+  </div>
+  <div :style="{ marginTop: '20px' }">
+    <du-button type="info" @click="onDialog">显示对话框</du-button>
+
+    <du-dialog title="对话框" v-model="showDialog">
+      <p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+    </du-dialog>
+  </div>
+
+  <div :style="{ marginTop: '20px' }">
+    <du-upload title="大文件上传" @change="changeFile"></du-upload>
   </div>
 </template>
 <script lang="ts" setup>
@@ -118,6 +129,32 @@ watch(
 
 function onEnter(val: string) {
   console.log("val", val);
+}
+
+const showDialog = ref(false);
+function onDialog() {
+  showDialog.value = true;
+}
+
+function changeFile(fileObj: Record<string, any>) {
+  console.info("file");
+  console.table(fileObj);
+  console.info("chunk file");
+  console.table(fileObj.file);
+  if (fileObj.type === "max-file") {
+    fileObj.file.map((f: Record<string, any>) => {
+      const FD = new FormData();
+      FD.append("filename", fileObj.name);
+      FD.append("chunk", f.chunk);
+      FD.append("index", f.index);
+      return { formData: FD };
+    });
+
+    // 1. 文件切片上传
+    // 2. 要实现断点续传需要后端提供一个记忆上传节点的借口，在每次刷新后获取切片位置，从该位置继续上传
+    // 3. 文件秒传原理， 使用文件生成一个hash值后，把这个hash发送给后端，后端通过hash去查询是否有同名的文件，若有直接给返回已存在了相同的文件，及不需要再上传了（障眼法而已）。
+    // 4. 暂停上传原理，创建一个切片数组，用来保存上传文件，当一个文件上传成功即把它从数组中pop出去，当点击暂停上传时，即把数组中的请求关闭掉，xhr使用abort（xhr.abort）axios使用abort
+  }
 }
 </script>
 <style scoped></style>
